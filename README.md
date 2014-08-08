@@ -4,18 +4,35 @@ Browserify transform for ractive components (and by extension templates) which a
 
 This module plays very nicely with `debowerify` and `deamdify`! I'm using it in my current project. Which is why I don't have any tests...yet...
 
+**However!** Debowerify (the original) filters out extensions. Which is why I made my own fork at `norcalli/debowerify` which
+accepts an `extensions` option (`debowerify.extensions.push('ract')`). This is the only way
+that `debowerify` will work with ractive components which have been `require`'d.
+
+You can include this in your `package.json` by simply switching the version to `norcalli/debowerify`
+like this:
+```
+"dependencies": {
+  ...
+  "debowerify": "norcalli/debowerify"
+  ...
+}
+```
+
 ### Quick Tip
 In case you didn't know, you could do:
 ```
 var ractiveify = require('ractiveify');
+
+ractiveify.extensions.push('ractive');
 
 var b = browserify();
 b.transform(ractiveify);
 b.bundle();
 ```
 
-# Example
+# Example component file
 
+`messages.ract`:
 ```
 {{#each filter(messages)}}
 <p>{{.}}</p>
@@ -38,7 +55,35 @@ components.exports =
 </script>
 ```
 
-# Usage, API, and extension
+## var messageTemplate = require('./messages.ract');
+
+`messageTemplate` will then be populated as such:
+```
+messageTemplate == {
+  template: ...
+  css: ...
+  init: function() {}
+  data:
+    filter: ...
+    messages: ...
+```
+
+The transform will populate the `template` property with the markup, the
+`css` property with the compiled output of your `<style>` tags and will
+use the rest as parameters for `messageTemplate`.
+
+You can then use the plugin by:
+```
+var MessageTemplate = Ractive.extend(require('./messages.ract'));
+
+var messageComponent = MessageTemplate({
+  el: container,
+  data:
+    messages: ['My', 'Better', 'Messages']
+});
+```
+
+# Transform programmatic usage, API, and extension
 
 I will soon be adding the option to specify these things in `package.json`,
 where compilers would be specified with filepaths.
