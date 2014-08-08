@@ -1,6 +1,6 @@
 # Ractiveify
 
-Browserify transform for ractive components (and by extension templates) which allows for compilation of embedded scripts and styles!
+Browserify transform for ractive [components](http://docs.ractivejs.org/latest/components) (and by extension templates) which allows for compilation of embedded scripts and styles!
 
 This module plays very nicely with `debowerify` and `deamdify`! I'm using it in my current project. Which is why I don't have any tests...yet...
 
