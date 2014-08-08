@@ -15,6 +15,9 @@
     "browserify",
     "ractive",
     "livescript",
+    "scss",
+    "debowerify",
+    "deamdify",
     "coffeescript"
   ],
   "author": "Ashkan Kiani",
