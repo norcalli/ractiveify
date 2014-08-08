@@ -4,6 +4,16 @@ Browserify transform for ractive components (and by extension templates) which a
 
 This module plays very nicely with `debowerify` and `deamdify`! I'm using it in my current project. Which is why I don't have any tests...yet...
 
+### Quick Tip
+In case you didn't know, you could do:
+```
+var ractiveify = require('ractiveify');
+
+var b = browserify();
+b.transform(ractiveify);
+b.bundle();
+```
+
 # Example
 
 ```
@@ -29,6 +39,9 @@ components.exports =
 ```
 
 # Usage, API, and extension
+
+I will soon be adding the option to specify these things in `package.json`,
+where compilers would be specified with filepaths.
 
 ## var ractiveify = require('ractiveify');
 
