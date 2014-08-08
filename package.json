@@ -1,6 +1,6 @@
 {
   "name": "ractiveify",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A ractive component parser which allows for embedded transpilable languages (like livescript and coffeescript).",
   "main": "index.js",
   "scripts": {
