@@ -1,12 +1,12 @@
 require! {
   'through'
   'tosource'
-  'path'
-  livescript: 'LiveScript'
+  './livescript.js'
+  './coffeescript.js'
   Ractive: 'ractive'
 }
 
-parseAndCompile = (file, data, options, cb) ->
+parseAndCompile = (file, data, cb) ->
   try
     parsed = Ractive.parse data, do
       noStringify: true
@@ -14,8 +14,10 @@ parseAndCompile = (file, data, options, cb) ->
         script: false
         style: false
 
+    # TODO: links support in some way?
     links = []
     scripts = []
+    # TODO: I could add scss support...
     styles = []
 
     # Extract certain top-level nodes from the template. We work backwards
@@ -31,22 +33,36 @@ parseAndCompile = (file, data, options, cb) ->
         if item.a and item.a.rel is 'ractive'
           links.push template.splice(i, 1)[0]
       case \style
-        if not item.a or not item.a.type or item.a.type is 'text/css'
+        if not item.a or not item.a.type
           styles.push template.splice(i, 1)[0]
+        else if item.a.type is 'text/css'
+          styles.push template.splice(i, 1)[0]
+        else if item.a.type of ractiveify.compilers
+          style = template.splice(i, 1)[0]
+          # console.log("Compiling:", item.a.type, item.f);
+          # TODO: Extension lookup?
+          # filename = file + ".ls"
+          source = style.f[0]
+          style.f[0] = ractiveify.compilers[item.a.type](file, source)
+          styles.push style
+        # By default it always removes the script if not supported.
+        else if ractiveify.removeUnsupported
+          template.splice(i, 1)[0]
       case \script
         if not item.a or not item.a.type
           scripts.push template.splice(i, 1)[0]
         else if item.a.type is 'text/javascript'
           scripts.push template.splice(i, 1)[0]
-        else if item.a.type of options.compilers
+        else if item.a.type of ractiveify.compilers
           script = template.splice(i, 1)[0]
           # console.log("Compiling:", item.a.type, item.f);
-          filename = file + ".ls"
+          # TODO: Extension lookup?
+          # filename = file + ".ls"
           source = script.f[0]
-          script.f[0] = options.compilers[item.a.type](filename, source)
+          script.f[0] = ractiveify.compilers[item.a.type](file, source)
           scripts.push script
         # By default it always removes the script if not supported.
-        else if options.onlySupported
+        else if ractiveify.removeUnsupported
           template.splice(i, 1)[0]
 
     imports = [{name, href} for {a: {name, href}} in links]
@@ -64,21 +80,11 @@ parseAndCompile = (file, data, options, cb) ->
   catch error
     cb error
 
-const livescriptCompiler = (file, data) ->
-  livescript.compile data,
-    bare: true
-    header: false
-    filename: file
-
-const default-options =
-  compilers:
-    "text/livescript": livescriptCompiler
-  onlySupported: true
-  extensions: ['ract', 'rtv']
-
-callback = (file, options) !->
+ractiveify = (file) !->
   data = ""
-  pattern = "\\.(#{options.extensions.join "|"})$"
+  # Use a regex because path.extname wouldn't match .coffee.md.
+  # TODO: Strip leading dot?
+  pattern = "\\.(#{ractiveify.extensions.join "|"})$"
   regex = new RegExp pattern
   # return through() unless /\.ract$/.test file
   return through() unless regex.test file
@@ -89,15 +95,19 @@ callback = (file, options) !->
     data += buf
 
   !function end
-    parseAndCompile file, data, options, (error, result) !->
+    parseAndCompile file, data, (error, result) !->
       stream.emit "error", error  if error
       stream.queue result
       stream.queue null
 
-module.exports = (user-options) !->
-  if typeof user-options == 'string'
-    return callback file, default-options
-  else
-    options = {} <<< default-options <<< user-options
-    return (file) -> callback file, options
+# TODO: Make compilers optionally an array with extension as second
+# EG:
+# - text/ls: [livescript, '.ls']
+ractiveify
+  ..extensions = ['ract', 'rtv']
+  ..removeUnsupported = true
+  ..compilers =
+    "text/livescript": livescriptCompiler
+    "text/ls": livescriptCompiler
 
+module.exports = ractiveify

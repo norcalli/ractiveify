@@ -24,9 +24,12 @@
   },
   "homepage": "https://github.com/norcalli/ractiveify",
   "dependencies": {
+    "LiveScript": "1.2.x",
     "ractive": "0.5.x",
     "through": "2.3.x",
     "tosource": "0.1.x",
-    "LiveScript": "1.2.x"
+    "mime": "1.2.x",
+    "convert-source-map": "0.4.x",
+    "coffee-script": "1.7.x"
   }
 }
