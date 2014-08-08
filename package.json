@@ -1,0 +1,32 @@
+{
+  "name": "ractiveify",
+  "version": "1.0.0",
+  "description": "A ractive component parser which allows for embedded transpilable languages (like livescript and coffeescript).",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "lsc -cb index.ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/norcalli/ractiveify"
+  },
+  "keywords": [
+    "browserify-transform",
+    "browserify",
+    "ractive",
+    "livescript",
+    "coffeescript"
+  ],
+  "author": "Ashkan Kiani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/norcalli/ractiveify/issues"
+  },
+  "homepage": "https://github.com/norcalli/ractiveify",
+  "dependencies": {
+    "ractive": "0.5.x",
+    "through": "2.3.x",
+    "tosource": "0.1.x",
+    "LiveScript": "1.2.x"
+  }
+}
