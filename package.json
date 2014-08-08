@@ -1,7 +1,7 @@
 {
   "name": "ractiveify",
   "version": "1.1.1",
-  "description": "A ractive component parser which allows for embedded transpilable languages (like livescript and coffeescript).",
+  "description": "A ractive component/template browserify transform which allows for embedded transpilable languages for javascript or css (like livescript, coffeescript, and scss!).",
   "main": "index.js",
   "scripts": {
     "preinstall": "lsc -cb index.ls compilers/*.ls"
