@@ -4,7 +4,7 @@
   "description": "A ractive component parser which allows for embedded transpilable languages (like livescript and coffeescript).",
   "main": "index.js",
   "scripts": {
-    "preinstall": "lsc -cb index.ls"
+    "preinstall": "lsc -cb index.ls compilers/*.ls"
   },
   "repository": {
     "type": "git",
