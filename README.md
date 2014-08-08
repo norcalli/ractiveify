@@ -1,5 +1,7 @@
 # Ractiveify
 
+Browserify transform and general ractive component parser (see `ractiveify.parse` below).
+
 Browserify transform for ractive [components](http://docs.ractivejs.org/latest/components) (and by extension templates) which allows for compilation of embedded scripts and styles!
 
 This module plays very nicely with `debowerify` and `deamdify`! I'm using it in my current project. Which is why I don't have any tests...yet...
@@ -91,6 +93,17 @@ where compilers would be specified with filepaths.
 ## var ractiveify = require('ractiveify');
 
 Initialization
+
+## ractiveify.parse(filename, scriptSource, callback(errors, data))
+
+I've exposed the parse method that I use in case anyone wants to use
+this plugin as the basis for anything else as well.
+
+- `filename` is mostly unimportant. It is passed forward to the compilers.
+
+- `scriptSource` is the actual file contents of the component. Obviously required.
+
+- `callback` is should be of the format `function(errors, data){}`
 
 ## ractiveify.removeUnsupported
 

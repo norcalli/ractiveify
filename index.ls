@@ -105,6 +105,7 @@ ractiveify = (file) !->
 # EG:
 # - text/ls: [livescript, '.ls']
 ractiveify
+  ..parse = parseAndCompile
   ..extensions = ['ract', 'rtv']
   ..removeUnsupported = true
   ..compilers =
