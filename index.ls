@@ -107,7 +107,10 @@ ractiveify
   ..extensions = ['ract', 'rtv']
   ..removeUnsupported = true
   ..compilers =
-    "text/livescript": livescriptCompiler
-    "text/ls": livescriptCompiler
+    "text/livescript": livescript
+    "text/ls": livescript
+    "text/coffeescript": coffeescript
+    "text/coffee": coffeescript
+    "text/coffee-script": coffeescript
 
 module.exports = ractiveify
