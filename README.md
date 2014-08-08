@@ -32,7 +32,7 @@ b.bundle();
 
 # Example component file
 
-`messages.ract`:
+## 'messages.ract'
 ```
 {{#each filter(messages)}}
 <p>{{.}}</p>
@@ -83,7 +83,7 @@ var messageComponent = MessageTemplate({
 });
 ```
 
-# Transform programmatic usage, API, and extension
+# Transform programmatic usage, API, and adding compilers
 
 I will soon be adding the option to specify these things in `package.json`,
 where compilers would be specified with filepaths.
