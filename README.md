@@ -36,7 +36,10 @@ Initialization
 
 ## ractiveify.removeUnsupported
 
-Default: `ractiveify.removeUnsupported = true`
+Default:
+```
+ractiveify.removeUnsupported = true
+```
 
 A `<script>` tag without a type is assumed to be `text/javascript` and a
 `<style>` tag without a type is assumed to be `test/css`.
@@ -46,7 +49,10 @@ means that these tags will not show up in the output.
 
 ## ractiveify.extensions
 
-Default: `ractiveify.extensions = ['ract', 'rtv']`
+Default:
+```
+ractiveify.extensions = ['ract', 'rtv']
+```
 
 ## ractiveify.compilers
 
@@ -66,7 +72,10 @@ ractiveify.compilers = {
 Just register the mime-type you would use in the `type` attribute for the script
 and then add the function to compile it.
 
-The format: `ractiveify.compilers['text/butt'] = function(filename, scriptSource) {...}`
+The format:
+```
+ractiveify.compilers['text/butt'] = function(filename, scriptSource) {...}
+```
 
 ### Example addon for scss!
 
