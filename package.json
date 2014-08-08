@@ -1,6 +1,6 @@
 {
   "name": "ractiveify",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A ractive component/template browserify transform which allows for embedded transpilable languages for javascript or css (like livescript, coffeescript, and scss!).",
   "main": "index.js",
   "scripts": {
