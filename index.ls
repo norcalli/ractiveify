@@ -1,10 +1,11 @@
 require! {
   'through'
   'tosource'
-  './livescript.js'
-  './coffeescript.js'
   Ractive: 'ractive'
 }
+
+livescript = require __dirname + '/compilers/livescript.js'
+coffeescript = require __dirname + '/compilers/coffeescript.js'
 
 parseAndCompile = (file, data, cb) ->
   try
