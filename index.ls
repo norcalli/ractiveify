@@ -10,8 +10,6 @@ coffeescript = require __dirname + '/compilers/coffeescript.js'
 parseAndCompile = (file, data, cb) ->
   try
     parsed = Ractive.parse data, do
-      sanitize:
-        elements: ['script', 'style']
       noStringify: true
       interpolate:
         script: false
