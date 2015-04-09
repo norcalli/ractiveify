@@ -1,4 +1,4 @@
-# Ractiveify
+# Ractiveify [![Build Status](https://travis-ci.org/norcalli/ractiveify.svg?branch=master)](https://travis-ci.org/norcalli/ractiveify)
 
 Browserify transform and general ractive component parser (see `ractiveify.parse` below).
 
