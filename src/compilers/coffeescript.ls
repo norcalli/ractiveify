@@ -1,8 +1,8 @@
 # Taken from jnordberg/coffeeify
 require! {
   'through'
-  coffee: 'coffee-script'
-  convert: 'convert-source-map'
+  'coffee-script': coffee
+  'convert-source-map': convert
 }
 
 !function ParseError error, src, file

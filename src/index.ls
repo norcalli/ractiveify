@@ -1,7 +1,7 @@
 require! {
   'through'
   'tosource'
-  Ractive: 'ractive'
+  'ractive': Ractive
 }
 
 livescript = require __dirname + '/compilers/livescript.js'

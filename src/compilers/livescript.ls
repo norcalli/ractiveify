@@ -1,4 +1,4 @@
-require! livescript: 'LiveScript'
+require! 'LiveScript': livescript
 
 module.exports = (file, data) ->
   livescript.compile data,
