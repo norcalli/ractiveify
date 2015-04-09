@@ -3,6 +3,10 @@
   "version": "1.5.5",
   "description": "A ractive component/template browserify transform which allows for embedded transpilable languages for javascript or css (like livescript, coffeescript, and scss!).",
   "main": "index.js",
+  "scripts": {
+    "pretest": "grunt",
+    "test": "node test/test.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/norcalli/ractiveify"
@@ -35,6 +39,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-livescript": "^0.5.4",
-    "load-grunt-tasks": "^3.1.0"
+    "load-grunt-tasks": "^3.1.0",
+    "browserify": "^9.0.x"
   }
 }
