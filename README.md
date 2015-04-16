@@ -12,7 +12,7 @@ that `debowerify` will work with ractive components which have been `require`'d.
 
 You can include this in your `package.json` by simply switching the version to `norcalli/debowerify`
 like this:
-```
+```js
 "dependencies": {
   ...
   "debowerify": "norcalli/debowerify"
@@ -22,7 +22,7 @@ like this:
 
 ### Quick Tip
 In case you didn't know, you could do:
-```
+```js
 var ractiveify = require('ractiveify');
 
 ractiveify.extensions.push('ractive');
@@ -35,7 +35,7 @@ b.bundle();
 # Example component file
 
 ## 'messages.ract'
-```
+```hbs
 {{#each filter(messages)}}
 <p>{{.}}</p>
 {{/each}}
@@ -49,7 +49,7 @@ $base-color: #abc;
 </style>
 
 <script type='text/ls'>
-components.exports =
+component.exports =
   init: ->
   data:
     filter: -> [.. for it when /monkey/i != ..]
@@ -60,7 +60,7 @@ components.exports =
 ## var messageTemplate = require('./messages.ract');
 
 `messageTemplate` will then be populated as such:
-```
+```js
 messageTemplate == {
   template: ...
   css: ...
@@ -75,7 +75,7 @@ The transform will populate the `template` property with the markup, the
 use the rest as parameters for `messageTemplate`.
 
 You can then use the plugin by:
-```
+```js
 var MessageTemplate = Ractive.extend(require('./messages.ract'));
 
 var messageComponent = MessageTemplate({
@@ -108,7 +108,7 @@ this plugin as the basis for anything else as well.
 ## ractiveify.removeUnsupported
 
 Default:
-```
+```js
 ractiveify.removeUnsupported = true
 ```
 
@@ -120,8 +120,10 @@ means that these tags will not show up in the output.
 
 ## ractiveify.extensions
 
+File extensions recognized by the transform.
+
 Default:
-```
+```js
 ractiveify.extensions = ['ract', 'rtv']
 ```
 
@@ -130,7 +132,7 @@ ractiveify.extensions = ['ract', 'rtv']
 Currently I added support for `coffeescript` and `livescript`.
 
 Default:
-```
+```js
 ractiveify.compilers = {
   'text/livescript': livescript,
   'text/ls': livescript,
@@ -144,13 +146,13 @@ Just register the mime-type you would use in the `type` attribute for the script
 and then add the function to compile it.
 
 The format:
-```
+```js
 ractiveify.compilers['text/butt'] = function(filename, scriptSource) {...}
 ```
 
 ### Example addon for scss!
 
-```
+```ls
 require! {
   'path'
   'node-sass'
